@@ -404,21 +404,27 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
 }
 .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
-/* ── THE ASK: 3 SIMPLE OPTIONS ── */
-.ask-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
-.ask-chip {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: -0.01em;
-  color: var(--white-2);
-  padding: 14px 22px;
-  border: 1px solid var(--glass-border);
+/* ── THE ASK: 3 REAL OPTIONS ── */
+.ask-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px; }
+.ask-card {
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
 }
+.ask-card.hi { border-color: var(--blue-border); background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.1) 100%); }
+.ask-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  font-size: 1.15rem;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.ask-card-desc { font-size: 0.85rem; color: var(--white-3); line-height: 1.7; }
+@media (max-width: 900px) { .ask-grid { grid-template-columns: 1fr; } }
 
 /* ── CLOSING ── */
 .closing {
@@ -624,7 +630,7 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
         </div>
 
         <div class="expand-h">The collaboration</div>
-        <p class="expand-p">Being explored with a fashion-focused collaborator based in Barcelona — its own conversation, running in parallel to this one.</p>
+        <p class="expand-p">Being explored as a collaboration with a fashion influencer based in Barcelona — its own conversation, running in parallel to this one.</p>
 
         <div class="expand-h">Status</div>
         <p class="expand-p">Creative universe defined. Not live yet.</p>
@@ -636,14 +642,25 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
 <!-- ══ 03 THE ASK ═══════════════════════════════════════════════════ -->
 <section class="section reveal">
   <div class="s-label">03 — The ask</div>
-  <h2 class="s-title">Let's talk, <span class="accent">Ana.</span></h2>
-  <p class="s-body tight">I'm not looking for a name next to this — I'm looking for someone whose experience can actually shape the technology side of it, starting with Studio and The Board. There's more than one way this could work.</p>
+  <h2 class="s-title">I want you in, <span class="accent">Ana.</span></h2>
+  <p class="s-body tight">This isn't a "keep in touch" deck. Zebraish needs someone who has actually built something real — not another advisor, not a name on a slide. That's why you're the first person seeing this. Studio is real and working today. The Board is designed and ready to build. I'm inviting you in now, while it's still early enough that joining means shaping it, not just watching it.</p>
 
-  <div class="ask-row">
-    <div class="ask-chip">Collaborator</div>
-    <div class="ask-chip">Founding Partner</div>
-    <div class="ask-chip">Investor</div>
+  <div class="ask-grid">
+    <div class="ask-card">
+      <div class="ask-card-title">Collaborator</div>
+      <div class="ask-card-desc">Bring your experience and network to Studio and The Board. Shape the product, on your terms, without stepping away from Technologica.</div>
+    </div>
+    <div class="ask-card hi">
+      <div class="ask-card-title">Founding Partner</div>
+      <div class="ask-card-desc">Build this with me, long-term. Real ownership in what Zebraish becomes — not a title, a stake in the outcome.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-card-title">Investor</div>
+      <div class="ask-card-desc">Back what's already working. Studio is real today — capital now buys real influence over where this goes next.</div>
+    </div>
   </div>
+
+  <p class="s-body tight" style="margin-top:28px;">Any one of these is a yes I'd take seriously. Tell me which one sounds like you — and let's talk specifics from there.</p>
 </section>
 
 <!-- ══ CLOSING ═════════════════════════════════════════════════════ -->
@@ -651,10 +668,10 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
   <div class="closing-glow"></div>
   <div class="s-label">04 — The invitation</div>
   <h2 class="closing-title">
-    Thanks for reading, Ana.
-    <span class="line2">Let's talk.</span>
+    I want you in, Ana.
+    <span class="line2">Let's build this.</span>
   </h2>
-  <p class="closing-body">No number, no percentage, no title in this deck — just the work, and one honest question: does building the technology side of Zebraish together make sense for both of us?</p>
+  <p class="closing-body">Collaborator, founding partner, or investor — whichever fits, I'd rather build Zebraish with you than without you. Studio is real, The Board is ready. The only thing missing is your yes.</p>
   <div class="closing-actions">
     <a class="cta-btn" href="https://bankys-portfolio.vercel.app/" target="_blank" rel="noopener">View the Portfolio →</a>
   </div>
