@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZEBRAISH — For Ana</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500&display=swap');
-
+/*
+  Typography note: this uses the -apple-system / BlinkMacSystemFont stack,
+  which resolves to actual San Francisco (SF Pro) on macOS, iOS, iPadOS and
+  Safari — the same face Apple's own pages use. SF Pro itself is an Apple
+  system font licensed only for use within Apple's own ecosystem, so it
+  can't legally be bundled or linked as a webfont here; the system stack is
+  the correct way to render true SF Pro for anyone on an Apple device, with
+  a matching Helvetica Neue fallback everywhere else.
+*/
 :root {
   --black: #000000;
   --black-2: #0a0a0a;
@@ -16,6 +21,7 @@
   --black-4: #1a1a1a;
   --black-5: #242424;
   --blue: #1D9BF0;
+  --blue-deep: #1568C0;
   --blue-dim: rgba(29,155,240,0.1);
   --blue-border: rgba(29,155,240,0.25);
   --blue-glow: rgba(29,155,240,0.4);
@@ -26,6 +32,20 @@
   --red: #F4212E;
   --green: #00BA7C;
   --orange: #FF7A00;
+
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --glass: rgba(255,255,255,0.045);
+  --glass-strong: rgba(255,255,255,0.075);
+  --glass-border: rgba(255,255,255,0.09);
+  --glass-blur: blur(28px) saturate(150%);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,18 +54,68 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--black);
   color: var(--white);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
   cursor: default;
 }
 
-body::after {
-  content: '';
+/* ── LIVE BLOB FIELD ── */
+.blob-field {
   position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  inset: -12%;
+  z-index: 0;
   pointer-events: none;
-  z-index: 9999;
+  filter: blur(90px);
+  opacity: 0.55;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.blob-a {
+  width: 48vw; height: 48vw;
+  top: -12%; left: -10%;
+  background: radial-gradient(circle at 32% 32%, rgba(29,155,240,0.55), rgba(29,155,240,0) 70%);
+  animation: blobFloatA 36s ease-in-out infinite;
+}
+
+.blob-b {
+  width: 40vw; height: 40vw;
+  bottom: -14%; right: -8%;
+  background: radial-gradient(circle at 60% 40%, rgba(21,104,192,0.45), rgba(21,104,192,0) 70%);
+  animation: blobFloatB 42s ease-in-out infinite;
+}
+
+.blob-c {
+  width: 30vw; height: 30vw;
+  top: 40%; left: 54%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08), rgba(255,255,255,0) 70%);
+  animation: blobFloatC 48s ease-in-out infinite;
+}
+
+@keyframes blobFloatA {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(6vw, 8vh) scale(1.08); }
+  66% { transform: translate(-4vw, 4vh) scale(0.94); }
+}
+@keyframes blobFloatB {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-7vw, -7vh) scale(1.12); }
+}
+@keyframes blobFloatC {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  40% { transform: translate(-5vw, 6vh) scale(1.15); }
+  70% { transform: translate(4vw, -5vh) scale(0.9); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none !important; }
 }
 
 *, a { cursor: none !important; }
@@ -102,7 +172,7 @@ body::after {
 }
 
 .cover-eyebrow {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -123,19 +193,23 @@ body::after {
 .stripe-mark { margin-bottom: 32px; }
 
 .cover-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 15vw, 15rem);
-  line-height: 0.85;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 8vw, 7rem);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
   margin-bottom: 40px;
   position: relative;
+  text-wrap: balance;
 }
 
 .cover-title .for {
   display: block;
   color: var(--white-3);
-  font-size: 0.28em;
-  letter-spacing: 0.15em;
+  font-weight: 500;
+  font-size: 0.3em;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
 }
 
 .cover-title .brand {
@@ -150,29 +224,32 @@ body::after {
   font-size: clamp(1rem, 2vw, 1.3rem);
   color: var(--white-3);
   max-width: 620px;
-  line-height: 1.7;
+  line-height: 1.6;
   margin-bottom: 60px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .cover-sub strong { color: var(--blue); font-weight: 600; }
 
 .cover-tags {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 80px;
 }
 
 .tag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 8px 16px;
-  border: 1px solid var(--white-4);
+  border: 1px solid var(--glass-border);
   color: var(--white-3);
-  background: var(--black-3);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-pill);
 }
 
 .tag.blue { border-color: var(--blue-border); color: var(--blue); background: var(--blue-dim); }
@@ -193,14 +270,16 @@ body::after {
 }
 
 .cover-stat-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 2.2rem;
   color: var(--blue);
   line-height: 1;
 }
 
 .cover-stat-lbl {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -222,7 +301,7 @@ body::after {
 }
 
 .s-label {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -236,22 +315,24 @@ body::after {
 .s-label::after { content: ''; flex: 1; height: 1px; background: var(--white-4); max-width: 80px; }
 
 .s-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.8rem, 7vw, 6.5rem);
-  line-height: 0.9;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   margin-bottom: 48px;
   max-width: 950px;
+  text-wrap: balance;
 }
 
 .s-title .accent { color: var(--blue); }
 
 .s-body {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--white-3);
-  line-height: 1.8;
+  line-height: 1.7;
   max-width: 720px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .s-body + .s-body { margin-top: 18px; }
@@ -268,24 +349,29 @@ body::after {
 /* ── PERSONAL NOTE ── */
 .pull {
   padding: 70px 8vw;
-  background: var(--blue-dim);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid var(--blue-border);
   border-bottom: 1px solid var(--blue-border);
 }
 
 .pull-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.7rem, 3.6vw, 3.2rem);
-  line-height: 1.15;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
   color: var(--white);
-  max-width: 920px;
+  max-width: 880px;
+  text-wrap: balance;
 }
 
 .pull-text .blue { color: var(--blue); }
 
 .pull-sig {
   margin-top: 32px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -296,21 +382,23 @@ body::after {
 .prob-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--white-4);
+  gap: 14px;
   margin-top: 60px;
-  border: 1px solid var(--white-4);
 }
 
 .prob-card {
-  background: var(--black-2);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   padding: 40px 32px;
   position: relative;
   overflow: hidden;
-  transition: background 0.2s;
+  transition: background 0.25s, transform 0.25s;
 }
 
-.prob-card:hover { background: var(--black-3); }
+.prob-card:hover { background: var(--glass-strong); transform: translateY(-3px); }
 
 .prob-card::before {
   content: '';
@@ -326,23 +414,26 @@ body::after {
 .prob-card:hover::before { transform: scaleX(1); }
 
 .prob-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 3.2rem;
   color: var(--white-4);
   line-height: 1;
   margin-bottom: 16px;
 }
 
 .prob-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   margin-bottom: 12px;
   color: var(--white);
 }
 
 .prob-body {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   color: var(--white-3);
   line-height: 1.7;
 }
@@ -351,13 +442,16 @@ body::after {
 .verticals-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  background: var(--white-4);
+  gap: 14px;
   margin-top: 60px;
 }
 
 .vert-card {
-  background: var(--black-2);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   padding: 44px 34px;
   position: relative;
   overflow: hidden;
@@ -365,17 +459,10 @@ body::after {
   flex-direction: column;
 }
 
-.vert-card.hero-card { background: linear-gradient(135deg, var(--black-2) 0%, rgba(29,155,240,0.06) 100%); }
-.vert-card.hero-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--blue-border);
-  pointer-events: none;
-}
+.vert-card.hero-card { background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.12) 100%); border-color: var(--blue-border); }
 
 .vert-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.25em;
   color: var(--white-4);
@@ -383,15 +470,17 @@ body::after {
 }
 
 .vert-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
-  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: 2.1rem;
+  line-height: 1.1;
   margin-bottom: 6px;
   color: var(--white);
 }
 
 .vert-role {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -400,21 +489,22 @@ body::after {
 }
 
 .vert-desc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--white-3);
-  line-height: 1.75;
+  line-height: 1.7;
   margin-bottom: 22px;
   flex: 1;
 }
 
 .vert-badge {
   align-self: flex-start;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 7px 14px;
   border: 1px solid;
+  border-radius: var(--radius-pill);
 }
 
 .vert-badge.complete { border-color: var(--green); color: var(--green); background: rgba(0,186,124,0.08); }
@@ -425,23 +515,23 @@ body::after {
   margin-top: 56px;
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
-  border: 1px solid var(--white-4);
+  gap: 10px;
 }
 
 .flow-step {
   flex: 1;
   min-width: 140px;
-  padding: 26px 20px;
-  border-right: 1px solid var(--white-4);
-  background: var(--black-2);
+  padding: 24px 20px;
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   position: relative;
 }
 
-.flow-step:last-child { border-right: none; }
-
 .flow-step-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.55rem;
   color: var(--blue);
   letter-spacing: 0.15em;
@@ -449,20 +539,15 @@ body::after {
 }
 
 .flow-step-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 0.88rem;
   color: var(--white);
-}
-
-.flow-step-arrow {
-  display: none;
 }
 
 @media (max-width: 900px) {
   .flow-row { flex-direction: column; }
-  .flow-step { border-right: none; border-bottom: 1px solid var(--white-4); }
-  .flow-step:last-child { border-bottom: none; }
 }
 
 /* ── ARCHITECTURE (SERVICES) ── */
@@ -470,47 +555,52 @@ body::after {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 10px;
 }
 
 .arch-layer {
   display: grid;
   grid-template-columns: 110px 1fr 1fr;
-  background: var(--black-2);
-  border: 1px solid var(--white-4);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.arch-layer:hover { border-color: var(--blue-border); }
+.arch-layer:hover { border-color: var(--blue-border); background: var(--glass-strong); }
 
 .arch-num {
-  background: var(--black-3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 2.6rem;
   color: var(--white-4);
-  border-right: 1px solid var(--white-4);
+  border-right: 1px solid var(--glass-border);
   padding: 28px;
 }
 
 .arch-info {
   padding: 28px;
-  border-right: 1px solid var(--white-4);
+  border-right: 1px solid var(--glass-border);
 }
 
 .arch-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--white);
   margin-bottom: 6px;
 }
 
 .arch-sublabel {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.56rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -519,7 +609,7 @@ body::after {
 }
 
 .arch-desc {
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--white-3);
   line-height: 1.7;
 }
@@ -533,7 +623,7 @@ body::after {
 }
 
 .arch-feat {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.63rem;
   color: var(--white-3);
   display: flex;
@@ -550,18 +640,20 @@ body::after {
   margin-top: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--white-4);
-  border: 1px solid var(--white-4);
+  gap: 12px;
 }
 
 .journey-step {
-  background: var(--black-2);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   padding: 30px 26px;
 }
 
 .journey-phase {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.56rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -570,15 +662,16 @@ body::after {
 }
 
 .journey-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 0.92rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 0.98rem;
   color: var(--white);
   margin-bottom: 8px;
 }
 
 .journey-desc {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--white-3);
   line-height: 1.6;
 }
@@ -590,17 +683,21 @@ body::after {
   margin-top: 56px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--white-4);
-  border: 1px solid var(--white-4);
+  gap: 12px;
 }
 
-.diff-col { background: var(--black-2); padding: 32px 30px; }
-.diff-col.no { }
-.diff-col.yes { background: linear-gradient(135deg, var(--black-2) 0%, rgba(29,155,240,0.05) 100%); }
+.diff-col {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 30px;
+}
+.diff-col.yes { background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.1) 100%); border-color: var(--blue-border); }
 
 .diff-head {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -610,7 +707,7 @@ body::after {
 .diff-col.yes .diff-head { color: var(--blue); }
 
 .diff-line {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--white-2);
   line-height: 1.9;
   padding-left: 18px;
@@ -625,7 +722,10 @@ body::after {
 .cta-band {
   margin-top: 60px;
   border: 1px solid var(--blue-border);
-  background: var(--blue-dim);
+  background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.08) 100%);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-lg);
   padding: 40px;
   display: flex;
   justify-content: space-between;
@@ -635,27 +735,30 @@ body::after {
 }
 
 .cta-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-size: 1.5rem;
   color: var(--white);
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .cta-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 14px 26px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: -0.005em;
+  padding: 13px 26px;
   border: 1px solid var(--blue);
+  border-radius: var(--radius-pill);
   color: var(--black);
   background: var(--blue);
   white-space: nowrap;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
   display: inline-block;
 }
-.cta-btn:hover { opacity: 0.85; }
+.cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
 .cta-btn.ghost {
   color: var(--blue);
@@ -667,17 +770,20 @@ body::after {
   margin-top: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--white-4);
+  gap: 14px;
 }
 
 .teaser-col {
-  background: var(--black-2);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   padding: 44px 38px;
 }
 
 .teaser-eyebrow {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -686,27 +792,30 @@ body::after {
 }
 
 .teaser-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.6rem;
-  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 1.9rem;
+  line-height: 1.1;
   color: var(--white);
   margin-bottom: 16px;
 }
 
 .teaser-desc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--white-3);
-  line-height: 1.8;
+  line-height: 1.75;
   margin-bottom: 22px;
 }
 
 .teaser-chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
 .teaser-chip {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   padding: 6px 12px;
   border: 1px solid var(--white-4);
+  border-radius: var(--radius-pill);
   color: var(--white-3);
 }
 
@@ -715,9 +824,12 @@ body::after {
 /* ── ECOSYSTEM LOOP ── */
 .loop-diagram {
   margin-top: 60px;
-  border: 1px solid var(--white-4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   padding: 48px;
-  background: var(--black-2);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .loop-row {
@@ -729,12 +841,13 @@ body::after {
 }
 
 .loop-node {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 14px 20px;
   border: 1px solid var(--white-4);
+  border-radius: var(--radius-pill);
   color: var(--white-2);
   background: var(--black-3);
 }
@@ -743,29 +856,33 @@ body::after {
 
 .loop-arrow {
   color: var(--white-4);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 /* ── STATS ── */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--white-4);
+  gap: 12px;
   margin-top: 60px;
-  border: 1px solid var(--white-4);
 }
 
 .stat-box {
-  background: var(--black-2);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
   padding: 40px 28px;
   text-align: center;
   position: relative;
 }
 
 .stat-val {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: 2.6rem;
   color: var(--blue);
   line-height: 1;
   display: block;
@@ -773,7 +890,7 @@ body::after {
 }
 
 .stat-lbl {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -788,20 +905,26 @@ body::after {
   margin-top: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  background: var(--white-4);
+  gap: 12px;
 }
 
-.cpf-col { background: var(--black-2); padding: 34px 28px; }
+.cpf-col {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 34px 28px;
+}
 
 .cpf-head {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--white-4);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .cpf-col.current .cpf-head { color: var(--green); }
@@ -809,7 +932,7 @@ body::after {
 .cpf-col.future .cpf-head { color: var(--blue); }
 
 .cpf-line {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--white-3);
   line-height: 1.9;
 }
@@ -823,7 +946,6 @@ body::after {
   flex-direction: column;
   justify-content: center;
   padding: 100px 8vw;
-  background: var(--black);
   position: relative;
   overflow: hidden;
 }
@@ -840,21 +962,23 @@ body::after {
 }
 
 .closing-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.2rem, 10vw, 10rem);
-  line-height: 0.85;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 6vw, 5.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
   margin-bottom: 44px;
+  text-wrap: balance;
 }
 
 .closing-title .line2 { color: var(--blue); display: block; }
 
 .closing-body {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--white-3);
   max-width: 640px;
-  line-height: 1.8;
-  font-weight: 300;
+  line-height: 1.7;
+  font-weight: 400;
   margin-bottom: 44px;
 }
 
@@ -863,7 +987,7 @@ body::after {
 .closing-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
 
 .closing-sig {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -894,6 +1018,12 @@ body::after {
 </style>
 </head>
 <body>
+
+<div class="blob-field" aria-hidden="true">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+</div>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
@@ -1042,7 +1172,7 @@ body::after {
 <!-- ── STUDIO: WHO IT SERVES ── -->
 <section class="section reveal">
   <div class="s-label">04.1 — Who it's for</div>
-  <h2 class="s-title" style="font-size:clamp(2.2rem,5vw,4rem);">Five kinds of founder, <span class="accent">one front door.</span></h2>
+  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">Five kinds of founder, <span class="accent">one front door.</span></h2>
 
   <div class="journey">
     <div class="journey-step">
@@ -1081,7 +1211,7 @@ body::after {
 <!-- ── STUDIO: PIPELINE ── -->
 <section class="section reveal">
   <div class="s-label">04.2 — The pipeline</div>
-  <h2 class="s-title" style="font-size:clamp(2.2rem,5vw,4rem);">From <span class="accent">idea to grow,</span> in one straight line.</h2>
+  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">From <span class="accent">idea to grow,</span> in one straight line.</h2>
   <p class="s-body">No handoffs, no dropped context. One process, ten stages.</p>
 
   <div class="flow-row">
@@ -1101,7 +1231,7 @@ body::after {
 <!-- ── STUDIO: SERVICES ARCHITECTURE ── -->
 <section class="section reveal">
   <div class="s-label">04.3 — What Studio builds</div>
-  <h2 class="s-title" style="font-size:clamp(2.2rem,5vw,4rem);">Five capabilities. <span class="accent">One outcome.</span></h2>
+  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">Five capabilities. <span class="accent">One outcome.</span></h2>
   <p class="s-body">Every service exists to serve the same goal — turning an idea into something that works, looks right, and keeps working after launch.</p>
 
   <div class="arch-layers">
@@ -1176,7 +1306,7 @@ body::after {
 <!-- ── STUDIO: DIFFERENTIATION ── -->
 <section class="section reveal">
   <div class="s-label">04.4 — Why not just hire a freelancer</div>
-  <h2 class="s-title" style="font-size:clamp(2.2rem,5vw,4rem);">A freelancer builds a website. <span class="accent">Studio builds a business.</span></h2>
+  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">A freelancer builds a website. <span class="accent">Studio builds a business.</span></h2>
 
   <div class="diff-table">
     <div class="diff-col no">
@@ -1201,7 +1331,7 @@ body::after {
 <!-- ── STUDIO ↔ BOARD ── -->
 <section class="section reveal">
   <div class="s-label">04.5 — The loop that makes it a system</div>
-  <h2 class="s-title" style="font-size:clamp(2.2rem,5vw,4rem);">Studio builds it. <span class="accent">The Board grows it.</span></h2>
+  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">Studio builds it. <span class="accent">The Board grows it.</span></h2>
   <p class="s-body">A business built through Studio can move straight into The Board and get a public presence, a community, and structured customer signal. A business already on The Board that needs something new — a rebuild, an automation, a new product — can move straight back into Studio. It's a loop, not a funnel.</p>
 
   <div class="loop-diagram">
