@@ -19,17 +19,14 @@
   --black-2: #0a0a0a;
   --black-3: #111111;
   --black-4: #1a1a1a;
-  --black-5: #242424;
   --blue: #1D9BF0;
   --blue-deep: #1568C0;
   --blue-dim: rgba(29,155,240,0.1);
   --blue-border: rgba(29,155,240,0.25);
-  --blue-glow: rgba(29,155,240,0.4);
   --white: #FFFFFF;
   --white-2: #E7E9EA;
   --white-3: #71767B;
   --white-4: #2F3336;
-  --red: #F4212E;
   --green: #00BA7C;
   --orange: #FF7A00;
 
@@ -37,7 +34,6 @@
   --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  --radius-sm: 14px;
   --radius-md: 20px;
   --radius-lg: 26px;
   --radius-pill: 999px;
@@ -59,7 +55,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  cursor: default;
 }
 
 /* ── LIVE BLOB FIELD ── */
@@ -71,34 +66,22 @@ body {
   filter: blur(90px);
   opacity: 0.55;
 }
-
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-}
-
+.blob { position: absolute; border-radius: 50%; will-change: transform; }
 .blob-a {
-  width: 48vw; height: 48vw;
-  top: -12%; left: -10%;
+  width: 48vw; height: 48vw; top: -12%; left: -10%;
   background: radial-gradient(circle at 32% 32%, rgba(29,155,240,0.55), rgba(29,155,240,0) 70%);
   animation: blobFloatA 36s ease-in-out infinite;
 }
-
 .blob-b {
-  width: 40vw; height: 40vw;
-  bottom: -14%; right: -8%;
+  width: 40vw; height: 40vw; bottom: -14%; right: -8%;
   background: radial-gradient(circle at 60% 40%, rgba(21,104,192,0.45), rgba(21,104,192,0) 70%);
   animation: blobFloatB 42s ease-in-out infinite;
 }
-
 .blob-c {
-  width: 30vw; height: 30vw;
-  top: 40%; left: 54%;
+  width: 30vw; height: 30vw; top: 40%; left: 54%;
   background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.08), rgba(255,255,255,0) 70%);
   animation: blobFloatC 48s ease-in-out infinite;
 }
-
 @keyframes blobFloatA {
   0%, 100% { transform: translate(0,0) scale(1); }
   33% { transform: translate(6vw, 8vh) scale(1.08); }
@@ -113,10 +96,7 @@ body {
   40% { transform: translate(-5vw, 6vh) scale(1.15); }
   70% { transform: translate(4vw, -5vh) scale(0.9); }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .blob { animation: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { .blob { animation: none !important; } }
 
 /* ── COVER ── */
 .cover {
@@ -129,27 +109,20 @@ body {
   overflow: hidden;
   border-bottom: 1px solid var(--white-4);
 }
-
 .cover-grid-bg {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(29,155,240,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(29,155,240,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
-
 .cover-glow {
-  position: absolute;
-  width: 600px;
-  height: 600px;
+  position: absolute; width: 600px; height: 600px;
   background: radial-gradient(circle, rgba(29,155,240,0.12) 0%, transparent 70%);
-  top: -200px;
-  right: -100px;
+  top: -200px; right: -100px;
   pointer-events: none;
 }
-
 .cover-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -161,16 +134,8 @@ body {
   align-items: center;
   gap: 12px;
 }
-
-.cover-eyebrow::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--blue);
-}
-
+.cover-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--blue); }
 .stripe-mark { margin-bottom: 32px; }
-
 .cover-title {
   font-family: var(--font-display);
   font-weight: 700;
@@ -178,10 +143,8 @@ body {
   line-height: 1.03;
   letter-spacing: -0.035em;
   margin-bottom: 40px;
-  position: relative;
   text-wrap: balance;
 }
-
 .cover-title .for {
   display: block;
   color: var(--white-3);
@@ -190,7 +153,6 @@ body {
   letter-spacing: -0.01em;
   margin-bottom: 6px;
 }
-
 .cover-title .brand {
   display: block;
   background: linear-gradient(135deg, var(--white) 0%, var(--blue) 100%);
@@ -198,25 +160,16 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .cover-sub {
   font-size: clamp(1rem, 2vw, 1.3rem);
   color: var(--white-3);
-  max-width: 620px;
+  max-width: 600px;
   line-height: 1.6;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
   font-weight: 400;
 }
-
 .cover-sub strong { color: var(--blue); font-weight: 600; }
-
-.cover-tags {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 80px;
-}
-
+.cover-tags { display: flex; gap: 10px; flex-wrap: wrap; }
 .tag {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -230,46 +183,9 @@ body {
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-pill);
 }
-
 .tag.blue { border-color: var(--blue-border); color: var(--blue); background: var(--blue-dim); }
 .tag.complete { border-color: rgba(0,186,124,0.4); color: var(--green); background: rgba(0,186,124,0.08); }
 .tag.prototype { border-color: rgba(255,122,0,0.4); color: var(--orange); background: rgba(255,122,0,0.08); }
-
-.cover-bottom {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.cover-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.cover-stat-val {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 2.2rem;
-  color: var(--blue);
-  line-height: 1;
-}
-
-.cover-stat-lbl {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--white-3);
-}
-
-.cover-stat-sep {
-  width: 1px;
-  height: 48px;
-  background: var(--white-4);
-}
 
 /* ── SECTION UNIVERSAL ── */
 .section {
@@ -278,7 +194,6 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 .s-label {
   font-family: var(--font-mono);
   font-size: 0.6rem;
@@ -290,51 +205,40 @@ body {
   gap: 10px;
   margin-bottom: 24px;
 }
-
 .s-label::after { content: ''; flex: 1; height: 1px; background: var(--white-4); max-width: 80px; }
-
 .s-title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(2rem, 4.6vw, 4rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  margin-bottom: 48px;
-  max-width: 950px;
+  margin-bottom: 28px;
+  max-width: 900px;
   text-wrap: balance;
 }
-
 .s-title .accent { color: var(--blue); }
-
 .s-body {
   font-size: 1.0625rem;
   color: var(--white-3);
   line-height: 1.7;
-  max-width: 720px;
+  max-width: 680px;
   font-weight: 400;
 }
+.s-body + .s-body { margin-top: 14px; }
+.s-body.tight { max-width: 620px; }
 
-.s-body + .s-body { margin-top: 18px; }
+/* ── STATUS ROW ── */
+.vert-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
 
-/* ── VERTICAL STATUS HEADER ── */
-.vert-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-
-/* ── PERSONAL NOTE ── */
+/* ── PULL QUOTE ── */
 .pull {
-  padding: 70px 8vw;
+  padding: 64px 8vw;
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid var(--blue-border);
   border-bottom: 1px solid var(--blue-border);
 }
-
 .pull-text {
   font-family: var(--font-display);
   font-weight: 600;
@@ -342,14 +246,12 @@ body {
   line-height: 1.35;
   letter-spacing: -0.015em;
   color: var(--white);
-  max-width: 880px;
+  max-width: 860px;
   text-wrap: balance;
 }
-
 .pull-text .blue { color: var(--blue); }
-
 .pull-sig {
-  margin-top: 32px;
+  margin-top: 28px;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.2em;
@@ -357,124 +259,37 @@ body {
   color: var(--white-3);
 }
 
-/* ── PROBLEM CARDS ── */
-.prob-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 60px;
-}
-
-.prob-card {
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 40px 32px;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.25s, transform 0.25s;
-}
-
-.prob-card:hover { background: var(--glass-strong); transform: translateY(-3px); }
-
-.prob-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--blue);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-}
-
-.prob-card:hover::before { transform: scaleX(1); }
-
-.prob-num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 3.2rem;
-  color: var(--white-4);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.prob-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
-  color: var(--white);
-}
-
-.prob-body {
-  font-size: 0.9rem;
-  color: var(--white-3);
-  line-height: 1.7;
-}
-
 /* ── VERTICALS GRID (3 CARDS) ── */
-.verticals-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 60px;
-}
-
+.verticals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 48px; }
 .vert-card {
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 44px 34px;
-  position: relative;
-  overflow: hidden;
+  padding: 40px 32px;
   display: flex;
   flex-direction: column;
 }
-
 .vert-card.hero-card { background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.12) 100%); border-color: var(--blue-border); }
-
-.vert-num {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  color: var(--white-4);
-  margin-bottom: 20px;
-}
-
 .vert-name {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.025em;
-  font-size: 2.1rem;
+  font-size: 2rem;
   line-height: 1.1;
   margin-bottom: 6px;
   color: var(--white);
 }
-
 .vert-role {
   font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--blue);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
-
-.vert-desc {
-  font-size: 0.9rem;
-  color: var(--white-3);
-  line-height: 1.7;
-  margin-bottom: 22px;
-  flex: 1;
-}
-
+.vert-desc { font-size: 0.88rem; color: var(--white-3); line-height: 1.65; margin-bottom: 20px; flex: 1; }
 .vert-badge {
   align-self: flex-start;
   font-family: var(--font-mono);
@@ -485,243 +300,41 @@ body {
   border: 1px solid;
   border-radius: var(--radius-pill);
 }
-
 .vert-badge.complete { border-color: var(--green); color: var(--green); background: rgba(0,186,124,0.08); }
 .vert-badge.prototype { border-color: var(--orange); color: var(--orange); background: rgba(255,122,0,0.08); }
 
-/* ── FLOW / LIFECYCLE ── */
-.flow-row {
-  margin-top: 56px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
+/* ── SIMPLE 4-STEP FLOW ── */
+.flow-row { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .flow-step {
   flex: 1;
   min-width: 140px;
-  padding: 24px 20px;
+  padding: 22px 20px;
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  position: relative;
 }
-
-.flow-step-num {
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  color: var(--blue);
-  letter-spacing: 0.15em;
-  margin-bottom: 8px;
-}
-
-.flow-step-name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  font-size: 0.88rem;
-  color: var(--white);
-}
-
-@media (max-width: 900px) {
-  .flow-row { flex-direction: column; }
-}
-
-/* ── ARCHITECTURE (SERVICES) ── */
-.arch-layers {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.arch-layer {
-  display: grid;
-  grid-template-columns: 110px 1fr 1fr;
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: border-color 0.2s, background 0.2s;
-}
-
-.arch-layer:hover { border-color: var(--blue-border); background: var(--glass-strong); }
-
-.arch-num {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 2.6rem;
-  color: var(--white-4);
-  border-right: 1px solid var(--glass-border);
-  padding: 28px;
-}
-
-.arch-info {
-  padding: 28px;
-  border-right: 1px solid var(--glass-border);
-}
-
-.arch-name {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-
-.arch-sublabel {
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 12px;
-}
-
-.arch-desc {
-  font-size: 0.85rem;
-  color: var(--white-3);
-  line-height: 1.7;
-}
-
-.arch-features {
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  justify-content: center;
-}
-
-.arch-feat {
-  font-family: var(--font-mono);
-  font-size: 0.63rem;
-  color: var(--white-3);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.arch-feat::before { content: '//'; color: var(--blue); }
-
-@media (max-width: 900px) { .arch-layer { grid-template-columns: 1fr; } }
-
-/* ── JOURNEY STEPS ── */
-.journey {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.journey-step {
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 30px 26px;
-}
-
-.journey-phase {
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--blue);
-  margin-bottom: 8px;
-}
-
-.journey-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  font-size: 0.98rem;
-  color: var(--white);
-  margin-bottom: 8px;
-}
-
-.journey-desc {
-  font-size: 0.8rem;
-  color: var(--white-3);
-  line-height: 1.6;
-}
-
-@media (max-width: 900px) { .journey { grid-template-columns: 1fr; } }
-
-/* ── DIFFERENTIATION TABLE ── */
-.diff-table {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.diff-col {
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 32px 30px;
-}
-.diff-col.yes { background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.1) 100%); border-color: var(--blue-border); }
-
-.diff-head {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-.diff-col.no .diff-head { color: var(--white-3); }
-.diff-col.yes .diff-head { color: var(--blue); }
-
-.diff-line {
-  font-size: 0.9rem;
-  color: var(--white-2);
-  line-height: 1.9;
-  padding-left: 18px;
-  position: relative;
-}
-.diff-col.no .diff-line::before { content: '—'; position: absolute; left: 0; color: var(--white-4); }
-.diff-col.yes .diff-line::before { content: '→'; position: absolute; left: 0; color: var(--blue); }
-
-@media (max-width: 900px) { .diff-table { grid-template-columns: 1fr; } }
+.flow-step-num { font-family: var(--font-mono); font-size: 0.55rem; color: var(--blue); letter-spacing: 0.15em; margin-bottom: 8px; }
+.flow-step-name { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; font-size: 0.9rem; color: var(--white); }
+@media (max-width: 900px) { .flow-row { flex-direction: column; } }
 
 /* ── CTA BAND ── */
 .cta-band {
-  margin-top: 60px;
+  margin-top: 44px;
   border: 1px solid var(--blue-border);
   background: linear-gradient(135deg, var(--glass-strong) 0%, rgba(29,155,240,0.08) 100%);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-lg);
-  padding: 40px;
+  padding: 36px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
   flex-wrap: wrap;
 }
-
-.cta-text {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  font-size: 1.5rem;
-  color: var(--white);
-  line-height: 1.2;
-}
-
+.cta-text { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; font-size: 1.4rem; color: var(--white); line-height: 1.2; }
 .cta-btn {
   font-family: var(--font-body);
   font-weight: 600;
@@ -739,188 +352,25 @@ body {
 }
 .cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
 
-.cta-btn.ghost {
-  color: var(--blue);
-  background: transparent;
-}
-
-/* ── PROTOTYPE TEASER CARDS (BOARD / FASHION) ── */
-.teaser {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.teaser-col {
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 44px 38px;
-}
-
-.teaser-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 14px;
-}
-
-.teaser-name {
+/* ── THE ASK: 3 SIMPLE OPTIONS ── */
+.ask-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+.ask-chip {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 1.9rem;
-  line-height: 1.1;
-  color: var(--white);
-  margin-bottom: 16px;
-}
-
-.teaser-desc {
-  font-size: 0.9rem;
-  color: var(--white-3);
-  line-height: 1.75;
-  margin-bottom: 22px;
-}
-
-.teaser-chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
-
-.teaser-chip {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  padding: 6px 12px;
-  border: 1px solid var(--white-4);
-  border-radius: var(--radius-pill);
-  color: var(--white-3);
-}
-
-@media (max-width: 900px) { .teaser { grid-template-columns: 1fr; } }
-
-/* ── ECOSYSTEM LOOP ── */
-.loop-diagram {
-  margin-top: 60px;
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 48px;
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-}
-
-.loop-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.loop-node {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 14px 20px;
-  border: 1px solid var(--white-4);
-  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
   color: var(--white-2);
-  background: var(--black-3);
-}
-
-.loop-node.hi { border-color: var(--blue-border); color: var(--blue); background: var(--blue-dim); }
-
-.loop-arrow {
-  color: var(--white-4);
-  font-family: var(--font-mono);
-}
-
-/* ── STATS ── */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 60px;
-}
-
-.stat-box {
+  padding: 14px 22px;
+  border: 1px solid var(--glass-border);
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 40px 28px;
-  text-align: center;
-  position: relative;
+  border-radius: var(--radius-pill);
 }
-
-.stat-val {
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 2.6rem;
-  color: var(--blue);
-  line-height: 1;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.stat-lbl {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white-3);
-  line-height: 1.5;
-}
-
-@media (max-width: 900px) { .stats { grid-template-columns: 1fr 1fr; } }
-
-/* ── CURRENT / PROTOTYPE / FUTURE ── */
-.cpf-grid {
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.cpf-col {
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  padding: 34px 28px;
-}
-
-.cpf-head {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--glass-border);
-}
-
-.cpf-col.current .cpf-head { color: var(--green); }
-.cpf-col.prototype .cpf-head { color: var(--orange); }
-.cpf-col.future .cpf-head { color: var(--blue); }
-
-.cpf-line {
-  font-size: 0.85rem;
-  color: var(--white-3);
-  line-height: 1.9;
-}
-
-@media (max-width: 900px) { .cpf-grid { grid-template-columns: 1fr; } }
 
 /* ── CLOSING ── */
 .closing {
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -928,72 +378,33 @@ body {
   position: relative;
   overflow: hidden;
 }
-
 .closing-glow {
-  position: absolute;
-  width: 800px;
-  height: 800px;
+  position: absolute; width: 800px; height: 800px;
   background: radial-gradient(circle, rgba(29,155,240,0.08) 0%, transparent 70%);
-  bottom: -400px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -400px; left: 50%; transform: translateX(-50%);
   pointer-events: none;
 }
-
 .closing-title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(2.25rem, 6vw, 5.5rem);
   line-height: 1.04;
   letter-spacing: -0.035em;
-  margin-bottom: 44px;
+  margin-bottom: 36px;
   text-wrap: balance;
 }
-
 .closing-title .line2 { color: var(--blue); display: block; }
-
-.closing-body {
-  font-size: 1.1rem;
-  color: var(--white-3);
-  max-width: 640px;
-  line-height: 1.7;
-  font-weight: 400;
-  margin-bottom: 44px;
-}
-
-.closing-body strong { color: var(--white-2); font-weight: 600; }
-
-.closing-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
-
-.closing-sig {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--blue);
-}
+.closing-body { font-size: 1.1rem; color: var(--white-3); max-width: 600px; line-height: 1.7; font-weight: 400; margin-bottom: 40px; }
+.closing-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 52px; }
+.closing-sig { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue); }
 
 /* ANIMATIONS */
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+@keyframes pulse-blue { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.live-dot { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; display: inline-block; animation: pulse-blue 2s ease infinite; margin-right: 6px; }
 
-@keyframes pulse-blue {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.live-dot {
-  width: 6px; height: 6px;
-  background: var(--blue);
-  border-radius: 50%;
-  display: inline-block;
-  animation: pulse-blue 2s ease infinite;
-  margin-right: 6px;
-}
-
-@media (max-width: 900px) {
-  .prob-cards, .verticals-grid, .stats { grid-template-columns: 1fr; }
-}
+@media (max-width: 900px) { .verticals-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -1011,7 +422,6 @@ body {
 
   <div class="cover-eyebrow"><span class="live-dot"></span>Confidential · Not a Cold Pitch · For Ana</div>
 
-  <!-- STRIPE MARK -->
   <div class="stripe-mark">
     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="6" y="10" width="52" height="44" rx="4" fill="#111" stroke="#1D9BF0" stroke-width="1.5"/>
@@ -1028,116 +438,76 @@ body {
   </h1>
 
   <p class="cover-sub">
-    One company. Three verticals. A single idea: <strong>build things, understand people, create culture, and help businesses grow</strong> — end to end, inside one ecosystem. This deck is the complete case for <strong>ZEBRAISH Studio</strong>, plus a first look at two verticals still in prototype: <strong>The Board</strong> and <strong>ZEBRAISH Fashion</strong>.
+    We build ideas into real products, then help them grow. <strong>Studio</strong> does the building — it's real, and it's the whole point of this deck. <strong>The Board</strong> and <strong>Fashion</strong> are early prototypes, shown here just so you see the full picture.
   </p>
 
   <div class="cover-tags">
-    <span class="tag blue">Founder-Led</span>
-    <span class="tag complete">● Studio — Complete Pitch</span>
+    <span class="tag complete">● Studio — Real, today</span>
     <span class="tag prototype">● Board — Prototype</span>
     <span class="tag prototype">● Fashion — Prototype</span>
-  </div>
-
-  <div class="cover-bottom">
-    <div class="cover-stat"><span class="cover-stat-val">3</span><span class="cover-stat-lbl">Verticals, one ecosystem</span></div>
-    <div class="cover-stat-sep"></div>
-    <div class="cover-stat"><span class="cover-stat-val">1</span><span class="cover-stat-lbl">Idea → business pipeline</span></div>
-    <div class="cover-stat-sep"></div>
-    <div class="cover-stat"><span class="cover-stat-val">0</span><span class="cover-stat-lbl">Things we're claiming that aren't real yet</span></div>
   </div>
 </section>
 
 <!-- ══ TO ANA ══════════════════════════════════════════════════════ -->
 <div class="pull reveal">
-  <div class="pull-text">"Ana — this isn't a pitch between strangers. You already know what it takes to build something from nothing at Technologica. I wanted to show you what I've been building, and <span class="blue">talk honestly about whether we build the technology side of it together.</span>"</div>
+  <div class="pull-text">"Ana — this isn't a pitch between strangers. You already know what it takes to build something from nothing at Technologica. I want to show you what I've been building, and <span class="blue">talk honestly about whether we build the technology side of it together.</span>"</div>
   <div class="pull-sig">— The Founder, ZEBRAISH</div>
 </div>
 
 <!-- ══ 01 THE IDEA ═════════════════════════════════════════════════ -->
 <section class="section reveal">
   <div class="s-label">01 — The idea</div>
-  <h2 class="s-title">One ecosystem. <span class="accent">Three rooms in the same house.</span></h2>
-  <p class="s-body">ZEBRAISH is the parent identity — a company built at the intersection of technology, business, fashion, culture, creativity and community. It isn't a single product. It's a pathway an idea can travel through, start to finish.</p>
-  <p class="s-body">Build things. Understand people. Create culture. Help businesses grow. Discover what has potential. Build an ecosystem around it.</p>
+  <h2 class="s-title">One ecosystem. <span class="accent">Build it, then grow it.</span></h2>
+  <p class="s-body tight">Zebraish has three parts. <strong style="color:var(--white-2)">Studio</strong> turns an idea into a real product. <strong style="color:var(--white-2)">The Board</strong> helps that product get discovered and grow. <strong style="color:var(--white-2)">Fashion</strong> is the culture side. Same identity, three jobs.</p>
 
   <div class="flow-row">
     <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-name">Idea</div></div>
     <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-name">Studio builds it</div></div>
-    <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-name">Launch</div></div>
-    <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-name">The Board grows it</div></div>
-    <div class="flow-step"><div class="flow-step-num">05</div><div class="flow-step-name">Signals + intelligence</div></div>
-    <div class="flow-step"><div class="flow-step-num">06</div><div class="flow-step-name">ZEBRAISH identifies what's promising</div></div>
-    <div class="flow-step"><div class="flow-step-num">07</div><div class="flow-step-name">Support / scale</div></div>
-  </div>
-  <p class="s-body" style="margin-top:32px;">That last step is a future direction, not a claim about today — a startup-support model in spirit like Y Combinator, built on top of an ecosystem that already knows how to build (Studio) and how to grow (The Board). The more businesses that move through it, the stronger the whole system gets.</p>
-</section>
-
-<!-- ══ 02 THE PROBLEM ══════════════════════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">02 — Why this needs to exist</div>
-  <h2 class="s-title">Founders are stitching together <span class="accent">five vendors to do one job.</span></h2>
-  <p class="s-body">Someone with a real idea today has to piece together a designer, a developer, a marketer, a feedback tool and an analytics dashboard — from five different companies who don't talk to each other — just to find out if anyone wants what they built.</p>
-
-  <div class="prob-cards">
-    <div class="prob-card">
-      <div class="prob-num">01</div>
-      <div class="prob-title">Building is fragmented</div>
-      <div class="prob-body">Freelancers build a website and leave. Agencies sell packages, not outcomes. Nobody stays connected to what happens after launch.</div>
-    </div>
-    <div class="prob-card">
-      <div class="prob-num">02</div>
-      <div class="prob-title">Growth is blind</div>
-      <div class="prob-body">Once a business launches, user signals scatter across Twitter, Reddit, reviews and DMs. None of it reaches the people who could act on it.</div>
-    </div>
-    <div class="prob-card">
-      <div class="prob-num">03</div>
-      <div class="prob-title">Small doesn't get discovered</div>
-      <div class="prob-body">A genuinely good product with no ad budget and no following has almost no path to being seen — unlike a person, who can go from nobody to somebody with one good post.</div>
-    </div>
+    <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-name">The Board grows it</div></div>
+    <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-name">Zebraish scales what works</div></div>
   </div>
 </section>
 
-<!-- ══ 03 THE ECOSYSTEM ════════════════════════════════════════════ -->
+<!-- ══ 02 THE THREE VERTICALS ══════════════════════════════════════ -->
 <section class="section reveal">
-  <div class="s-label">03 — The ecosystem</div>
-  <h2 class="s-title">Three verticals. <span class="accent">Different rooms, same DNA.</span></h2>
-  <p class="s-body">This deck goes deep on one of them — because it's the one that's ready for a real conversation with you. The other two are shown honestly, as what they are: designed, working prototypes, not finished businesses.</p>
+  <div class="s-label">02 — The three parts</div>
+  <h2 class="s-title">Studio is real. <span class="accent">Board and Fashion are prototypes.</span></h2>
 
   <div class="verticals-grid">
     <div class="vert-card hero-card">
-      <div class="vert-num">01 / TECHNOLOGY</div>
       <div class="vert-name">Studio</div>
       <div class="vert-role">Build Engine</div>
-      <div class="vert-desc">Where an idea becomes a real product — brand, software, AI, automation, growth. The complete pitch, starting at section 04.</div>
-      <div class="vert-badge complete">● Complete Pitch</div>
+      <div class="vert-desc">Turns an idea into a real product — brand, software, growth.</div>
+      <div class="vert-badge complete">● Real, today</div>
     </div>
     <div class="vert-card">
-      <div class="vert-num">02 / TECHNOLOGY</div>
       <div class="vert-name">The Board</div>
       <div class="vert-role">Business Ecosystem</div>
-      <div class="vert-desc">Where a launched business lives, gets discovered, and turns customer signal into structured intelligence.</div>
+      <div class="vert-desc">Where a launched product gets discovered and grows.</div>
       <div class="vert-badge prototype">● Prototype</div>
     </div>
     <div class="vert-card">
-      <div class="vert-num">03 / CULTURE</div>
       <div class="vert-name">Fashion</div>
       <div class="vert-role">Creative Universe</div>
-      <div class="vert-desc">The cultural and physical expression of ZEBRAISH — an animal-inspired fashion universe, flagship zebra.</div>
+      <div class="vert-desc">The cultural side of Zebraish, flagship zebra identity.</div>
       <div class="vert-badge prototype">● Prototype</div>
     </div>
   </div>
 </section>
 
-<!-- ══ 04 ZEBRAISH STUDIO — COMPLETE ═══════════════════════════════ -->
+<!-- ══ 03 ZEBRAISH STUDIO — THE MAIN PITCH ═════════════════════════ -->
 <section class="section reveal">
-  <div class="vert-header">
-    <span class="tag complete">● Complete Pitch</span>
-    <span class="tag blue">Technology</span>
+  <div class="vert-header"><span class="tag complete">● Real, today</span></div>
+  <div class="s-label">03 — How we build it</div>
+  <h2 class="s-title">You bring the idea. <span class="accent">We build it.</span></h2>
+  <p class="s-body tight">Studio takes an idea and makes it real — brand, product, software — then hands it off to The Board to grow. One team, one process, nothing dropped in between.</p>
+
+  <div class="flow-row">
+    <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-name">Discover</div></div>
+    <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-name">Build</div></div>
+    <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-name">Launch</div></div>
+    <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-name">Grow, on The Board</div></div>
   </div>
-  <div class="s-label">04 — The complete pitch</div>
-  <h2 class="s-title">You have the idea. <span class="accent">We build the rest.</span></h2>
-  <p class="s-body">ZEBRAISH Studio is not a web design shop with a service menu. It's the execution layer for anyone who has an idea and no technical cofounder, no designer, no automation specialist and no marketing team sitting next to them — yet.</p>
-  <p class="s-body">The proposition is simple: bring the problem. Studio figures out what needs to be built, then builds it — brand, product, software, AI, automation and the growth systems around it.</p>
 
   <div class="cta-band">
     <div class="cta-text">See the real work behind the pitch →</div>
@@ -1145,327 +515,49 @@ body {
   </div>
 </section>
 
-<!-- ── STUDIO: WHO IT SERVES ── -->
+<!-- ══ 04 BOARD + FASHION — PROTOTYPES ═════════════════════════════ -->
 <section class="section reveal">
-  <div class="s-label">04.1 — Who it's for</div>
-  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">Five kinds of founder, <span class="accent">one front door.</span></h2>
+  <div class="s-label">04 — The two prototypes</div>
+  <h2 class="s-title">Designed. <span class="accent">Not live yet.</span></h2>
 
-  <div class="journey">
-    <div class="journey-step">
-      <div class="journey-phase">Idea Stage</div>
-      <div class="journey-title">Nothing built yet</div>
-      <div class="journey-desc">Just the idea, and the question of what it should actually become.</div>
+  <div class="verticals-grid" style="margin-top:40px;">
+    <div class="vert-card">
+      <div class="vert-name">The Board</div>
+      <div class="vert-role">Prototype</div>
+      <div class="vert-desc">A place where a launched business gets a public page, gets discovered, and turns customer feedback into a clear list of what to build next.</div>
+      <div class="vert-badge prototype">● Prototype</div>
     </div>
-    <div class="journey-step">
-      <div class="journey-phase">Early Startup</div>
-      <div class="journey-title">Concept or MVP</div>
-      <div class="journey-desc">Something exists, but the infrastructure underneath it isn't strong enough yet.</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-phase">Small Business</div>
-      <div class="journey-title">Running on WhatsApp</div>
-      <div class="journey-desc">A real business, still taking every order by hand, with no digital backbone.</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-phase">Growing Company</div>
-      <div class="journey-title">Outgrowing the basics</div>
-      <div class="journey-desc">Needs real software, automation, or analytics — not another template site.</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-phase">Existing Company</div>
-      <div class="journey-title">Digital transformation</div>
-      <div class="journey-desc">An established organization that needs a specific, focused technology project done right.</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-phase">Creators / Personal Brands</div>
-      <div class="journey-title">Needs an identity</div>
-      <div class="journey-desc">A person who needs the digital infrastructure of a business, built around them.</div>
+    <div class="vert-card">
+      <div class="vert-name">Fashion</div>
+      <div class="vert-role">Prototype</div>
+      <div class="vert-desc">Zebraish's cultural identity — zebra as the flagship, with room to grow into other animal-inspired designs over time.</div>
+      <div class="vert-badge prototype">● Prototype</div>
     </div>
   </div>
 </section>
 
-<!-- ── STUDIO: PIPELINE ── -->
+<!-- ══ 05 THE ASK ═══════════════════════════════════════════════════ -->
 <section class="section reveal">
-  <div class="s-label">04.2 — The pipeline</div>
-  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">From <span class="accent">idea to grow,</span> in one straight line.</h2>
-  <p class="s-body">No handoffs, no dropped context. One process, ten stages.</p>
+  <div class="s-label">05 — The ask</div>
+  <h2 class="s-title">Let's talk, <span class="accent">Ana.</span></h2>
+  <p class="s-body tight">I'm not looking for a name next to this — I'm looking for someone whose experience can actually shape the technology side of it, starting with Studio and The Board. There's more than one way this could work.</p>
 
-  <div class="flow-row">
-    <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-name">Idea</div></div>
-    <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-name">Discovery</div></div>
-    <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-name">Strategy</div></div>
-    <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-name">Design</div></div>
-    <div class="flow-step"><div class="flow-step-num">05</div><div class="flow-step-name">Build</div></div>
-    <div class="flow-step"><div class="flow-step-num">06</div><div class="flow-step-name">Launch</div></div>
-    <div class="flow-step"><div class="flow-step-num">07</div><div class="flow-step-name">Automate</div></div>
-    <div class="flow-step"><div class="flow-step-num">08</div><div class="flow-step-name">Market</div></div>
-    <div class="flow-step"><div class="flow-step-num">09</div><div class="flow-step-name">Measure</div></div>
-    <div class="flow-step"><div class="flow-step-num">10</div><div class="flow-step-name">Grow</div></div>
+  <div class="ask-row">
+    <div class="ask-chip">Collaborator</div>
+    <div class="ask-chip">Founding Partner</div>
+    <div class="ask-chip">Investor</div>
   </div>
 </section>
-
-<!-- ── STUDIO: SERVICES ARCHITECTURE ── -->
-<section class="section reveal">
-  <div class="s-label">04.3 — What Studio builds</div>
-  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">Five capabilities. <span class="accent">One outcome.</span></h2>
-  <p class="s-body">Every service exists to serve the same goal — turning an idea into something that works, looks right, and keeps working after launch.</p>
-
-  <div class="arch-layers">
-    <div class="arch-layer">
-      <div class="arch-num">01</div>
-      <div class="arch-info">
-        <div class="arch-sublabel">Build</div>
-        <div class="arch-name">Product & Engineering</div>
-        <div class="arch-desc">Turning the idea into a functioning digital product — not just a landing page.</div>
-      </div>
-      <div class="arch-features">
-        <div class="arch-feat">Websites, web apps, SaaS interfaces</div>
-        <div class="arch-feat">Custom software: dashboards, portals, marketplaces</div>
-        <div class="arch-feat">Design systems and product UX/UI</div>
-      </div>
-    </div>
-    <div class="arch-layer">
-      <div class="arch-num">02</div>
-      <div class="arch-info">
-        <div class="arch-sublabel">Intelligence</div>
-        <div class="arch-name">AI & Data</div>
-        <div class="arch-desc">AI where it solves a real business problem — never AI for its own sake.</div>
-      </div>
-      <div class="arch-features">
-        <div class="arch-feat">AI assistants and customer support</div>
-        <div class="arch-feat">Document analysis, intelligent search</div>
-        <div class="arch-feat">Business intelligence and analytics</div>
-      </div>
-    </div>
-    <div class="arch-layer">
-      <div class="arch-num">03</div>
-      <div class="arch-info">
-        <div class="arch-sublabel">Automate</div>
-        <div class="arch-name">Workflows & Systems</div>
-        <div class="arch-desc">Removing the repetitive manual work that quietly caps how far a business can grow.</div>
-      </div>
-      <div class="arch-features">
-        <div class="arch-feat">Lead capture → CRM → notification → action</div>
-        <div class="arch-feat">Onboarding, scheduling, payment flows</div>
-        <div class="arch-feat">Integrations across the tools a business already uses</div>
-      </div>
-    </div>
-    <div class="arch-layer">
-      <div class="arch-num">04</div>
-      <div class="arch-info">
-        <div class="arch-sublabel">Brand</div>
-        <div class="arch-name">Identity & Creative</div>
-        <div class="arch-desc">A founder should arrive with only an idea, and leave with something that looks and feels like a company.</div>
-      </div>
-      <div class="arch-features">
-        <div class="arch-feat">Naming, identity systems, logos</div>
-        <div class="arch-feat">Typography and visual language</div>
-        <div class="arch-feat">Brand guidelines and digital implementation</div>
-      </div>
-    </div>
-    <div class="arch-layer" style="border-color:var(--blue-border);">
-      <div class="arch-num" style="color:var(--blue);">05</div>
-      <div class="arch-info">
-        <div class="arch-sublabel">Grow</div>
-        <div class="arch-name">Launch & Optimize</div>
-        <div class="arch-desc">Digital infrastructure required to launch — and the connection into The Board, where growth actually happens.</div>
-      </div>
-      <div class="arch-features">
-        <div class="arch-feat">Launch strategy, landing-page optimization</div>
-        <div class="arch-feat">Content and campaign infrastructure</div>
-        <div class="arch-feat">Handoff into The Board for discovery + signal</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STUDIO: DIFFERENTIATION ── -->
-<section class="section reveal">
-  <div class="s-label">04.4 — Why not just hire a freelancer</div>
-  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">A freelancer builds a website. <span class="accent">Studio builds a business.</span></h2>
-
-  <div class="diff-table">
-    <div class="diff-col no">
-      <div class="diff-head">A Freelancer / Typical Agency</div>
-      <div class="diff-line">Sells hours, or a fixed package</div>
-      <div class="diff-line">Delivers the site, then disappears</div>
-      <div class="diff-line">"Pick one of our 17 packages"</div>
-      <div class="diff-line">No connection to what happens after launch</div>
-      <div class="diff-line">No path back once something new is needed</div>
-    </div>
-    <div class="diff-col yes">
-      <div class="diff-head">ZEBRAISH Studio</div>
-      <div class="diff-line">Sells the outcome: idea → real product</div>
-      <div class="diff-line">Stays connected through the business lifecycle</div>
-      <div class="diff-line">"Tell us what you're building"</div>
-      <div class="diff-line">Launch flows straight into The Board</div>
-      <div class="diff-line">Studio ↔ Board is a loop, not a dead end</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STUDIO ↔ BOARD ── -->
-<section class="section reveal">
-  <div class="s-label">04.5 — The loop that makes it a system</div>
-  <h2 class="s-title" style="font-size:clamp(1.8rem,3.6vw,2.75rem);">Studio builds it. <span class="accent">The Board grows it.</span></h2>
-  <p class="s-body">A business built through Studio can move straight into The Board and get a public presence, a community, and structured customer signal. A business already on The Board that needs something new — a rebuild, an automation, a new product — can move straight back into Studio. It's a loop, not a funnel.</p>
-
-  <div class="loop-diagram">
-    <div class="loop-row">
-      <div class="loop-node hi">IDEA</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node hi">ZEBRAISH STUDIO</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node">LAUNCH</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node">THE BOARD</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node">FEEDBACK + ANALYTICS</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node">GROW</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node hi">NEED SOMETHING NEW?</div>
-      <div class="loop-arrow">→</div>
-      <div class="loop-node hi">BACK TO STUDIO</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STUDIO CLOSE ── -->
-<section class="section reveal">
-  <div class="cta-band">
-    <div class="cta-text">Bring us the idea. Let's figure out what needs to be built.</div>
-    <a class="cta-btn" href="https://bankys-portfolio.vercel.app/" target="_blank" rel="noopener">View the Portfolio →</a>
-  </div>
-</section>
-
-<!-- ══ 05 THE BOARD — PROTOTYPE ═══════════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">05 — Prototype</div>
-  <h2 class="s-title">The Board <span class="accent">is where launched businesses go to be seen.</span></h2>
-  <p class="s-body">Not a feedback tool. A business ecosystem and discovery platform — every company gets a "Drop," its own world inside The Board, with a community side and a signals side. Customer complaints become bug reports. Feature requests become a ranked wishlist. Votes decide what gets built next, in public.</p>
-
-  <div class="teaser">
-    <div class="teaser-col">
-      <div class="teaser-eyebrow">● Prototype — designed, not yet live</div>
-      <div class="teaser-name">Discovery, built in</div>
-      <div class="teaser-desc">Social media let an unknown person go from nobody to somebody with one good post. The Board is built on the same idea, applied to businesses: a small company with something genuinely good shouldn't need a huge ad budget just to be noticed.</div>
-      <div class="teaser-chip-row">
-        <span class="teaser-chip">Drops (company pages)</span>
-        <span class="teaser-chip">Hype / Cap voting</span>
-        <span class="teaser-chip">What's Poppin feed</span>
-      </div>
-    </div>
-    <div class="teaser-col">
-      <div class="teaser-eyebrow">● Prototype — designed, not yet live</div>
-      <div class="teaser-name">Signal → intelligence</div>
-      <div class="teaser-desc">Every complaint, request and bug report becomes structured data — ranked by demand, clustered by severity, rolled into a Health Score. Chaos in, structured truth out, for the business that owns the Drop.</div>
-      <div class="teaser-chip-row">
-        <span class="teaser-chip">Company dashboard</span>
-        <span class="teaser-chip">Flame score ranking</span>
-        <span class="teaser-chip">Status: Open → Built</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 06 ZEBRAISH FASHION — PROTOTYPE ════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">06 — Prototype</div>
-  <h2 class="s-title">ZEBRAISH Fashion <span class="accent">is the culture, not a costume.</span></h2>
-  <p class="s-body">Not "a brand that puts zebra stripes on clothes." An animal-inspired fashion universe — zebra as the flagship, with giraffe, leopard, snake and bird identities expanding the vocabulary over time through pattern, texture, coat, color and silhouette, not just print.</p>
-
-  <div class="teaser">
-    <div class="teaser-col">
-      <div class="teaser-eyebrow">● Prototype — designed, not yet live</div>
-      <div class="teaser-name">Zebra: the flagship</div>
-      <div class="teaser-desc">Black and white, stripes, contrast, sharp visual rhythm — the foundation of the identity, and the reason the whole company is named ZEBRAISH. Every other animal expands the universe without replacing it.</div>
-      <div class="teaser-chip-row">
-        <span class="teaser-chip">Zebra — contrast / monochrome</span>
-        <span class="teaser-chip">Leopard — rosettes / luxury</span>
-      </div>
-    </div>
-    <div class="teaser-col">
-      <div class="teaser-eyebrow">● Prototype — designed, not yet live</div>
-      <div class="teaser-name">A separate collaboration</div>
-      <div class="teaser-desc">This vertical is being explored with a fashion-focused collaborator based in Barcelona — its own conversation, running in parallel to this one. Fashion stays its own vertical: same ZEBRAISH DNA, its own creative language, own audience.</div>
-      <div class="teaser-chip-row">
-        <span class="teaser-chip">Giraffe — earthy / organic</span>
-        <span class="teaser-chip">Snake — scale / metallic</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 07 WHERE THINGS STAND ═══════════════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">07 — Where things actually stand</div>
-  <h2 class="s-title">No cap, <span class="accent">here's the honest version.</span></h2>
-  <p class="s-body">Ana runs a real company. This section exists so nothing in this deck has to be taken on faith.</p>
-
-  <div class="cpf-grid">
-    <div class="cpf-col current">
-      <div class="cpf-head">Current</div>
-      <div class="cpf-line">A real, working portfolio of Studio-caliber build work</div>
-      <div class="cpf-line">A defined ecosystem architecture across all three verticals</div>
-      <div class="cpf-line">A founder actively building, not fundraising off a slide</div>
-    </div>
-    <div class="cpf-col prototype">
-      <div class="cpf-head">Prototype</div>
-      <div class="cpf-line">The Board — designed and demonstrable, pre-launch</div>
-      <div class="cpf-line">ZEBRAISH Fashion — creative universe defined, pre-launch</div>
-      <div class="cpf-line">Studio's client workspace / project pipeline UI</div>
-    </div>
-    <div class="cpf-col future">
-      <div class="cpf-head">Future</div>
-      <div class="cpf-line">Studio → Board as a live, self-reinforcing pipeline</div>
-      <div class="cpf-line">A ZEBRAISH support / investment model, YC-in-spirit</div>
-      <div class="cpf-line">Fashion vertical launched with the Barcelona collaboration</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 08 WHY YOU, AND THE ASK ═══════════════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">08 — Why you, and what I'm asking</div>
-  <h2 class="s-title">I'm not looking for a name next to this. <span class="accent">I'm looking for you.</span></h2>
-  <p class="s-body">I'm not looking for someone to put their name beside ZEBRAISH. I'm looking for someone whose perspective and experience can actually shape the technology side of it — starting with Studio and The Board. That's why I'm showing you this before anyone else.</p>
-  <p class="s-body">I want to explore whether you'd be interested in helping build the technology side of ZEBRAISH with me. If this resonates, let's talk about what role, commitment and structure makes sense for both of us — there's more than one way this could work.</p>
-
-  <div class="journey">
-    <div class="journey-step">
-      <div class="journey-phase">Option A</div>
-      <div class="journey-title">Collaborator</div>
-      <div class="journey-desc">You contribute expertise, perspective, network and/or execution — on your terms, at your pace.</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-phase">Option B</div>
-      <div class="journey-title">Founding Partner</div>
-      <div class="journey-desc">If the collaboration deepens, a real founding relationship could be discussed — not assumed today.</div>
-    </div>
-    <div class="journey-step">
-      <div class="journey-phase">Option C</div>
-      <div class="journey-title">Investor / Backer</div>
-      <div class="journey-desc">If you'd rather support this financially, that's its own conversation — economics come after alignment, not before.</div>
-    </div>
-  </div>
-</section>
-
-<div class="pull reveal">
-  <div class="pull-text">"No number, no percentage, no title in this deck. Just <span class="blue">the work</span> — and one honest question: does building the technology side of ZEBRAISH together make sense for both of us?"</div>
-</div>
 
 <!-- ══ CLOSING ═════════════════════════════════════════════════════ -->
 <section class="closing reveal">
   <div class="closing-glow"></div>
-  <div class="s-label">09 — The invitation</div>
+  <div class="s-label">06 — The invitation</div>
   <h2 class="closing-title">
     Thanks for reading, Ana.
     <span class="line2">Let's talk.</span>
   </h2>
-  <p class="closing-body">
-    Studio is the complete pitch because it's real today. The Board and Fashion are shown honestly as what they are — prototypes with a clear architecture behind them, not finished products. <strong>That's the whole point: build in public, grow in public, and let the work do the talking.</strong>
-  </p>
+  <p class="closing-body">No number, no percentage, no title in this deck — just the work, and one honest question: does building the technology side of Zebraish together make sense for both of us?</p>
   <div class="closing-actions">
     <a class="cta-btn" href="https://bankys-portfolio.vercel.app/" target="_blank" rel="noopener">View the Portfolio →</a>
   </div>
