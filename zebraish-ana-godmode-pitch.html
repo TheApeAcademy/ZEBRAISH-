@@ -303,6 +303,58 @@ body {
 .vert-badge.complete { border-color: var(--green); color: var(--green); background: rgba(0,186,124,0.08); }
 .vert-badge.prototype { border-color: var(--orange); color: var(--orange); background: rgba(255,122,0,0.08); }
 
+/* ── EXPANDABLE VERTICAL CARDS ── */
+.vert-card { padding: 0; overflow: hidden; }
+.vert-summary {
+  padding: 40px 32px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.vert-summary::-webkit-details-marker { display: none; }
+.vert-summary::marker { content: ''; }
+.vert-top { display: flex; flex-direction: column; flex: 1; }
+.vert-toggle {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.chev { display: inline-block; font-size: 0.7rem; transition: transform 0.25s ease; }
+details[open] .chev { transform: rotate(180deg); }
+details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
+.vert-expand { padding: 0 32px 36px; animation: expandIn 0.35s ease; }
+@keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.expand-h {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-3);
+  margin-top: 22px;
+  margin-bottom: 10px;
+}
+.expand-h:first-child { margin-top: 24px; }
+.expand-p { font-size: 0.85rem; color: var(--white-3); line-height: 1.75; }
+.expand-chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.expand-chip {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  padding: 6px 12px;
+  border: 1px solid var(--white-4);
+  border-radius: var(--radius-pill);
+  color: var(--white-2);
+  background: rgba(255,255,255,0.03);
+}
+.expand-cta { margin-top: 24px; }
+
 /* ── SIMPLE 4-STEP FLOW ── */
 .flow-row { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .flow-step {
@@ -472,73 +524,118 @@ body {
 <section class="section reveal">
   <div class="s-label">02 — The three parts</div>
   <h2 class="s-title">Studio is real. <span class="accent">Board and Fashion are prototypes.</span></h2>
+  <p class="s-body tight">Tap any card for the full picture.</p>
 
   <div class="verticals-grid">
-    <div class="vert-card hero-card">
-      <div class="vert-name">Studio</div>
-      <div class="vert-role">Build Engine</div>
-      <div class="vert-desc">Turns an idea into a real product — brand, software, growth.</div>
-      <div class="vert-badge complete">● Real, today</div>
-    </div>
-    <div class="vert-card">
-      <div class="vert-name">The Board</div>
-      <div class="vert-role">Business Ecosystem</div>
-      <div class="vert-desc">Where a launched product gets discovered and grows.</div>
-      <div class="vert-badge prototype">● Prototype</div>
-    </div>
-    <div class="vert-card">
-      <div class="vert-name">Fashion</div>
-      <div class="vert-role">Creative Universe</div>
-      <div class="vert-desc">The cultural side of Zebraish, flagship zebra identity.</div>
-      <div class="vert-badge prototype">● Prototype</div>
-    </div>
+    <details class="vert-card hero-card">
+      <summary class="vert-summary">
+        <div class="vert-top">
+          <div class="vert-name">Studio</div>
+          <div class="vert-role">Build Engine</div>
+          <div class="vert-desc">Turns an idea into a real product — brand, software, growth.</div>
+          <div class="vert-badge complete">● Real, today</div>
+        </div>
+        <div class="vert-toggle">View full details <span class="chev">⌄</span></div>
+      </summary>
+      <div class="vert-expand">
+        <div class="expand-h">Who it's for</div>
+        <div class="expand-chip-row">
+          <span class="expand-chip">Idea-stage founders</span>
+          <span class="expand-chip">Early startups</span>
+          <span class="expand-chip">Small businesses</span>
+          <span class="expand-chip">Growing companies</span>
+          <span class="expand-chip">Existing companies</span>
+          <span class="expand-chip">Creators & personal brands</span>
+        </div>
+
+        <div class="expand-h">The process</div>
+        <p class="expand-p">Idea → Discovery → Strategy → Design → Build → Launch → Automate → Market → Measure → Grow. One team the whole way, no handoffs.</p>
+
+        <div class="expand-h">What we build</div>
+        <p class="expand-p">
+          <strong style="color:var(--white-2)">Build</strong> — websites, apps, software, SaaS.<br>
+          <strong style="color:var(--white-2)">Intelligence</strong> — AI and data, only where it solves a real problem.<br>
+          <strong style="color:var(--white-2)">Automate</strong> — removing the manual work that quietly caps growth.<br>
+          <strong style="color:var(--white-2)">Brand</strong> — identity, naming, visual language.<br>
+          <strong style="color:var(--white-2)">Grow</strong> — launch strategy, then handoff into The Board.
+        </p>
+
+        <div class="expand-h">Why not a freelancer</div>
+        <p class="expand-p">A freelancer delivers a site and disappears. Studio stays connected through the whole lifecycle — build, launch, then straight into The Board to grow. Studio ↔ Board is a loop, not a dead end.</p>
+
+        <div class="expand-cta">
+          <a class="cta-btn" href="https://bankys-portfolio.vercel.app/" target="_blank" rel="noopener">View the Portfolio →</a>
+        </div>
+      </div>
+    </details>
+
+    <details class="vert-card">
+      <summary class="vert-summary">
+        <div class="vert-top">
+          <div class="vert-name">The Board</div>
+          <div class="vert-role">Business Ecosystem</div>
+          <div class="vert-desc">Where a launched product gets discovered and grows.</div>
+          <div class="vert-badge prototype">● Prototype</div>
+        </div>
+        <div class="vert-toggle">View full details <span class="chev">⌄</span></div>
+      </summary>
+      <div class="vert-expand">
+        <div class="expand-h">What it is</div>
+        <p class="expand-p">Not a feedback tool — a business ecosystem and discovery platform. Every company gets a "Drop": its own world inside The Board, with a community side and a signals side.</p>
+
+        <div class="expand-h">How it works</div>
+        <div class="expand-chip-row">
+          <span class="expand-chip">Hype = upvote</span>
+          <span class="expand-chip">Cap = downvote</span>
+          <span class="expand-chip">Receipt = structured feedback</span>
+          <span class="expand-chip">Drip = community post</span>
+          <span class="expand-chip">Going Flame = viral demand</span>
+        </div>
+
+        <div class="expand-h">For the business</div>
+        <p class="expand-p">Every complaint and request becomes ranked data — a Health Score, a flame-ranked wishlist, and a public status from Open to Built. Small companies get discovered the way people do on social media: on the strength of the thing itself, not the ad budget.</p>
+
+        <div class="expand-h">Status</div>
+        <p class="expand-p">Designed and demonstrable. Not live yet.</p>
+      </div>
+    </details>
+
+    <details class="vert-card">
+      <summary class="vert-summary">
+        <div class="vert-top">
+          <div class="vert-name">Fashion</div>
+          <div class="vert-role">Creative Universe</div>
+          <div class="vert-desc">The cultural side of Zebraish, flagship zebra identity.</div>
+          <div class="vert-badge prototype">● Prototype</div>
+        </div>
+        <div class="vert-toggle">View full details <span class="chev">⌄</span></div>
+      </summary>
+      <div class="vert-expand">
+        <div class="expand-h">Not just zebra print</div>
+        <p class="expand-p">An animal-inspired fashion universe. The zebra is the flagship — black, white, contrast, stripes — but the vocabulary expands through pattern, texture, coat and color, not just print.</p>
+
+        <div class="expand-h">The animal family</div>
+        <div class="expand-chip-row">
+          <span class="expand-chip">Zebra — contrast & monochrome</span>
+          <span class="expand-chip">Giraffe — earthy & organic</span>
+          <span class="expand-chip">Leopard — rosettes & luxury</span>
+          <span class="expand-chip">Snake — scale & metallic</span>
+          <span class="expand-chip">Bird — feather & flight</span>
+        </div>
+
+        <div class="expand-h">The collaboration</div>
+        <p class="expand-p">Being explored with a fashion-focused collaborator based in Barcelona — its own conversation, running in parallel to this one.</p>
+
+        <div class="expand-h">Status</div>
+        <p class="expand-p">Creative universe defined. Not live yet.</p>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ══ 03 ZEBRAISH STUDIO — THE MAIN PITCH ═════════════════════════ -->
+<!-- ══ 03 THE ASK ═══════════════════════════════════════════════════ -->
 <section class="section reveal">
-  <div class="vert-header"><span class="tag complete">● Real, today</span></div>
-  <div class="s-label">03 — How we build it</div>
-  <h2 class="s-title">You bring the idea. <span class="accent">We build it.</span></h2>
-  <p class="s-body tight">Studio takes an idea and makes it real — brand, product, software — then hands it off to The Board to grow. One team, one process, nothing dropped in between.</p>
-
-  <div class="flow-row">
-    <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-name">Discover</div></div>
-    <div class="flow-step"><div class="flow-step-num">02</div><div class="flow-step-name">Build</div></div>
-    <div class="flow-step"><div class="flow-step-num">03</div><div class="flow-step-name">Launch</div></div>
-    <div class="flow-step"><div class="flow-step-num">04</div><div class="flow-step-name">Grow, on The Board</div></div>
-  </div>
-
-  <div class="cta-band">
-    <div class="cta-text">See the real work behind the pitch →</div>
-    <a class="cta-btn" href="https://bankys-portfolio.vercel.app/" target="_blank" rel="noopener">View the Portfolio</a>
-  </div>
-</section>
-
-<!-- ══ 04 BOARD + FASHION — PROTOTYPES ═════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">04 — The two prototypes</div>
-  <h2 class="s-title">Designed. <span class="accent">Not live yet.</span></h2>
-
-  <div class="verticals-grid" style="margin-top:40px;">
-    <div class="vert-card">
-      <div class="vert-name">The Board</div>
-      <div class="vert-role">Prototype</div>
-      <div class="vert-desc">A place where a launched business gets a public page, gets discovered, and turns customer feedback into a clear list of what to build next.</div>
-      <div class="vert-badge prototype">● Prototype</div>
-    </div>
-    <div class="vert-card">
-      <div class="vert-name">Fashion</div>
-      <div class="vert-role">Prototype</div>
-      <div class="vert-desc">Zebraish's cultural identity — zebra as the flagship, with room to grow into other animal-inspired designs over time.</div>
-      <div class="vert-badge prototype">● Prototype</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 05 THE ASK ═══════════════════════════════════════════════════ -->
-<section class="section reveal">
-  <div class="s-label">05 — The ask</div>
+  <div class="s-label">03 — The ask</div>
   <h2 class="s-title">Let's talk, <span class="accent">Ana.</span></h2>
   <p class="s-body tight">I'm not looking for a name next to this — I'm looking for someone whose experience can actually shape the technology side of it, starting with Studio and The Board. There's more than one way this could work.</p>
 
@@ -552,7 +649,7 @@ body {
 <!-- ══ CLOSING ═════════════════════════════════════════════════════ -->
 <section class="closing reveal">
   <div class="closing-glow"></div>
-  <div class="s-label">06 — The invitation</div>
+  <div class="s-label">04 — The invitation</div>
   <h2 class="closing-title">
     Thanks for reading, Ana.
     <span class="line2">Let's talk.</span>
