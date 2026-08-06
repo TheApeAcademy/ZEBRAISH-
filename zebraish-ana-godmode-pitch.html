@@ -316,43 +316,51 @@ body {
 .vert-summary::-webkit-details-marker { display: none; }
 .vert-summary::marker { content: ''; }
 .vert-top { display: flex; flex-direction: column; flex: 1; }
+.vert-toggle-row { margin-top: 22px; }
 .vert-toggle {
-  margin-top: 18px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.62rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--blue);
+  padding: 10px 16px;
+  border: 1px solid var(--blue-border);
+  background: var(--blue-dim);
+  border-radius: var(--radius-pill);
+  transition: background 0.2s, transform 0.2s;
 }
+.vert-summary:hover .vert-toggle { background: rgba(29,155,240,0.18); transform: translateY(-1px); }
+.vert-toggle .when-open { display: none; }
+details[open] .vert-toggle .when-closed { display: none; }
+details[open] .vert-toggle .when-open { display: inline; }
 .chev { display: inline-block; font-size: 0.7rem; transition: transform 0.25s ease; }
 details[open] .chev { transform: rotate(180deg); }
 details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
-.vert-expand { padding: 0 32px 36px; animation: expandIn 0.35s ease; }
+.vert-expand { padding: 4px 32px 40px; animation: expandIn 0.35s ease; }
 @keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 .expand-h {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--white-3);
-  margin-top: 22px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 1rem;
+  color: var(--white);
+  margin-top: 28px;
   margin-bottom: 10px;
 }
 .expand-h:first-child { margin-top: 24px; }
-.expand-p { font-size: 0.85rem; color: var(--white-3); line-height: 1.75; }
-.expand-chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
-.expand-chip {
+.expand-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  padding: 6px 12px;
-  border: 1px solid var(--white-4);
-  border-radius: var(--radius-pill);
-  color: var(--white-2);
-  background: rgba(255,255,255,0.03);
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 4px;
 }
+.expand-p { font-size: 0.92rem; color: var(--white-3); line-height: 1.85; }
+.expand-p + .expand-p { margin-top: 12px; }
 .expand-cta { margin-top: 24px; }
 
 /* ── SIMPLE 4-STEP FLOW ── */
@@ -508,7 +516,7 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
 
 <!-- ══ TO ANA ══════════════════════════════════════════════════════ -->
 <div class="pull reveal">
-  <div class="pull-text">"Ana — this isn't a pitch between strangers. You already know what it takes to build something from nothing at Technologica. I want to show you what I've been building, and <span class="blue">talk honestly about whether we build the technology side of it together.</span>"</div>
+  <div class="pull-text">"Ana — this isn't a pitch between strangers. You're a tech enthusiast and a CEO who's already built something real at Technologica — which means you have exactly the expertise Zebraish's tech side needs. I want to show you what I've been building, and <span class="blue">talk honestly about whether we build it together.</span>"</div>
   <div class="pull-sig">— The Founder, ZEBRAISH</div>
 </div>
 
@@ -517,6 +525,7 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
   <div class="s-label">01 — The idea</div>
   <h2 class="s-title">One ecosystem. <span class="accent">Build it, then grow it.</span></h2>
   <p class="s-body tight">Zebraish has three parts. <strong style="color:var(--white-2)">Studio</strong> turns an idea into a real product. <strong style="color:var(--white-2)">The Board</strong> helps that product get discovered and grow. <strong style="color:var(--white-2)">Fashion</strong> is the culture side. Same identity, three jobs.</p>
+  <p class="s-body tight">Studio and The Board together are the tech side of Zebraish — the part built for someone who already thinks like a tech founder.</p>
 
   <div class="flow-row">
     <div class="flow-step"><div class="flow-step-num">01</div><div class="flow-step-name">Idea</div></div>
@@ -530,7 +539,7 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
 <section class="section reveal">
   <div class="s-label">02 — The three parts</div>
   <h2 class="s-title">Studio is real. <span class="accent">Board and Fashion are prototypes.</span></h2>
-  <p class="s-body tight">Tap any card for the full picture.</p>
+  <p class="s-body tight">Hit "See More" on any card for the full picture.</p>
 
   <div class="verticals-grid">
     <details class="vert-card hero-card">
@@ -541,33 +550,23 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
           <div class="vert-desc">Turns an idea into a real product — brand, software, growth.</div>
           <div class="vert-badge complete">● Real, today</div>
         </div>
-        <div class="vert-toggle">View full details <span class="chev">⌄</span></div>
+        <div class="vert-toggle-row">
+          <span class="vert-toggle"><span class="when-closed">See More</span><span class="when-open">See Less</span> <span class="chev">⌄</span></span>
+        </div>
       </summary>
       <div class="vert-expand">
         <div class="expand-h">Who it's for</div>
-        <div class="expand-chip-row">
-          <span class="expand-chip">Idea-stage founders</span>
-          <span class="expand-chip">Early startups</span>
-          <span class="expand-chip">Small businesses</span>
-          <span class="expand-chip">Growing companies</span>
-          <span class="expand-chip">Existing companies</span>
-          <span class="expand-chip">Creators & personal brands</span>
-        </div>
+        <p class="expand-p">Studio is built for anyone standing at the edge of an idea with no team behind them yet — the idea-stage founder who hasn't built anything, the early startup still running on a rough MVP, the small business still taking every order by hand through WhatsApp, and the growing or established company that has simply outgrown its basic website. It also covers creators and personal brands who need the digital infrastructure of a real business built around them. The common thread isn't size or stage — it's that someone has something worth building and doesn't yet have the team to build it.</p>
 
         <div class="expand-h">The process</div>
-        <p class="expand-p">Idea → Discovery → Strategy → Design → Build → Launch → Automate → Market → Measure → Grow. One team the whole way, no handoffs.</p>
+        <p class="expand-p">Every engagement moves through the same ten stages: idea, discovery, strategy, design, build, launch, automate, market, measure, grow. Discovery is where Studio actually listens — what the idea is, who it's for, what already exists, what's missing. Strategy turns that into a real plan: what the MVP needs to contain, what can wait, what technology actually makes sense. Design and build turn the plan into a working product, and launch is where it goes live. From there, automate and market build the machinery that keeps the business running without constant manual effort, and measure and grow close the loop — feeding straight into The Board, where the business gets discovered and starts actually learning from its customers.</p>
+        <p class="expand-p">None of this hands off between disconnected vendors. It's one team, holding the full context from the first conversation through to the business standing on its own.</p>
 
         <div class="expand-h">What we build</div>
-        <p class="expand-p">
-          <strong style="color:var(--white-2)">Build</strong> — websites, apps, software, SaaS.<br>
-          <strong style="color:var(--white-2)">Intelligence</strong> — AI and data, only where it solves a real problem.<br>
-          <strong style="color:var(--white-2)">Automate</strong> — removing the manual work that quietly caps growth.<br>
-          <strong style="color:var(--white-2)">Brand</strong> — identity, naming, visual language.<br>
-          <strong style="color:var(--white-2)">Grow</strong> — launch strategy, then handoff into The Board.
-        </p>
+        <p class="expand-p"><strong style="color:var(--white-2)">Build</strong> covers the product itself — websites, web apps, custom software, SaaS interfaces, whatever the idea actually needs to exist. <strong style="color:var(--white-2)">Intelligence</strong> means AI and data work, but only where it solves a real problem, never bolted on because it sounds impressive. <strong style="color:var(--white-2)">Automate</strong> removes the repetitive manual work that quietly caps how far a business can grow before it even notices the ceiling. <strong style="color:var(--white-2)">Brand</strong> gives the business an identity — the difference between "I have an idea" and "I have something that looks and feels like a company." And <strong style="color:var(--white-2)">Grow</strong> is the handoff: launch strategy and the direct connection into The Board, where the business starts learning from the people it's actually built for.</p>
 
         <div class="expand-h">Why not a freelancer</div>
-        <p class="expand-p">A freelancer delivers a site and disappears. Studio stays connected through the whole lifecycle — build, launch, then straight into The Board to grow. Studio ↔ Board is a loop, not a dead end.</p>
+        <p class="expand-p">A freelancer sells hours or a fixed package, delivers a site, and disappears — no connection to what happens after launch, and no path back in when something new is needed. Studio stays connected through the whole lifecycle. Launch flows straight into The Board; if the business later needs a rebuild, a new automation or a new product, it comes straight back into Studio. Studio and The Board aren't two separate vendors — they're one loop, and that loop is the actual product.</p>
 
         <div class="expand-cta">
           <a class="cta-btn" href="https://bankys-portfolio.vercel.app/" target="_blank" rel="noopener">View the Portfolio →</a>
@@ -583,26 +582,25 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
           <div class="vert-desc">Where a launched product gets discovered and grows.</div>
           <div class="vert-badge prototype">● Prototype</div>
         </div>
-        <div class="vert-toggle">View full details <span class="chev">⌄</span></div>
+        <div class="vert-toggle-row">
+          <span class="vert-toggle"><span class="when-closed">See More</span><span class="when-open">See Less</span> <span class="chev">⌄</span></span>
+        </div>
       </summary>
       <div class="vert-expand">
         <div class="expand-h">What it is</div>
-        <p class="expand-p">Not a feedback tool — a business ecosystem and discovery platform. Every company gets a "Drop": its own world inside The Board, with a community side and a signals side.</p>
+        <p class="expand-p">The Board is not a customer feedback tool — that description is far too narrow. It's a business ecosystem and discovery platform: a digital home where a company can launch, build a public presence, connect with the people using its product, and turn what they say into structured intelligence instead of scattered noise across Twitter threads, App Store reviews and support tickets. Every business gets its own "Drop" — a world inside The Board with its own identity, banner and voice, but still connected underneath to the same discovery network everyone else is part of.</p>
 
-        <div class="expand-h">How it works</div>
-        <div class="expand-chip-row">
-          <span class="expand-chip">Hype = upvote</span>
-          <span class="expand-chip">Cap = downvote</span>
-          <span class="expand-chip">Receipt = structured feedback</span>
-          <span class="expand-chip">Drip = community post</span>
-          <span class="expand-chip">Going Flame = viral demand</span>
-        </div>
+        <div class="expand-h">Businesses should be able to go viral</div>
+        <p class="expand-p">Social media changed what it took for an unknown person to be seen — someone could make one good thing, post it, and go from nobody to somebody without needing money, connections or a media team behind them. The Board is built on the same idea, applied to businesses. A small company with something genuinely good shouldn't need a massive ad budget or celebrity backing just to be noticed — it should be able to get discovered because people are actually responding to what it's building.</p>
+
+        <div class="expand-h">The vocabulary</div>
+        <p class="expand-p">Users don't submit generic "feedback" — they hype what's good, cap what isn't, and drop receipts: structured bug reports, feature requests and complaints the community can vote on. A Hype is an upvote, a Cap is a downvote, a Receipt is structured feedback, a Drip is a free-form community post, and when a signal's hype is accelerating fast enough, it's Going Flame — impossible for the business to ignore.</p>
 
         <div class="expand-h">For the business</div>
-        <p class="expand-p">Every complaint and request becomes ranked data — a Health Score, a flame-ranked wishlist, and a public status from Open to Built. Small companies get discovered the way people do on social media: on the strength of the thing itself, not the ad budget.</p>
+        <p class="expand-p">Every complaint and request becomes ranked, structured data instead of noise — a Health Score for the business, a flame-ranked wishlist of what people actually want built next, and a public status that moves from Open through Seen, Planned, Building and Built. Customers watch their own receipt turn into reality in real time, and the company gets a real signal-to-intelligence layer instead of guessing what to build based on internal politics and whoever talks loudest in the room.</p>
 
         <div class="expand-h">Status</div>
-        <p class="expand-p">Designed and demonstrable. Not live yet.</p>
+        <p class="expand-p">The Board is designed and demonstrable — the architecture, data model and product flows are fully worked out — but it isn't live yet. It's a prototype, not a claim about customers or revenue that don't exist.</p>
       </div>
     </details>
 
@@ -614,26 +612,22 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
           <div class="vert-desc">The cultural side of Zebraish, flagship zebra identity.</div>
           <div class="vert-badge prototype">● Prototype</div>
         </div>
-        <div class="vert-toggle">View full details <span class="chev">⌄</span></div>
+        <div class="vert-toggle-row">
+          <span class="vert-toggle"><span class="when-closed">See More</span><span class="when-open">See Less</span> <span class="chev">⌄</span></span>
+        </div>
       </summary>
       <div class="vert-expand">
         <div class="expand-h">Not just zebra print</div>
-        <p class="expand-p">An animal-inspired fashion universe. The zebra is the flagship — black, white, contrast, stripes — but the vocabulary expands through pattern, texture, coat and color, not just print.</p>
+        <p class="expand-p">It would be easy to read Zebraish Fashion as a brand that puts zebra stripes on clothes — that's far too narrow a read. It's an animal-inspired fashion universe, where the animal world becomes a creative vocabulary: pattern, texture, skin, coat, fur, feather, color, silhouette and material, not just print. The zebra is the flagship because it's the animal the whole company's name and identity comes from, and it appears more prominently than any other animal in the system — but the brand isn't imprisoned by it. Zebra is the foundation; other animals expand the universe around it, which gives the brand room to grow creatively for years without repeating the same striped garment.</p>
 
         <div class="expand-h">The animal family</div>
-        <div class="expand-chip-row">
-          <span class="expand-chip">Zebra — contrast & monochrome</span>
-          <span class="expand-chip">Giraffe — earthy & organic</span>
-          <span class="expand-chip">Leopard — rosettes & luxury</span>
-          <span class="expand-chip">Snake — scale & metallic</span>
-          <span class="expand-chip">Bird — feather & flight</span>
-        </div>
+        <p class="expand-p">Each animal contributes its own design vocabulary, not just its pattern. Zebra brings black and white, sharp contrast and bold, graphic rhythm. Giraffe brings irregular geometric markings in warm browns, tan and cream, with a more organic, elongated feel. Leopard brings spots and rosettes, high-contrast patterning and a sense of predatory luxury. Snake brings scales, glossy surfaces and a dark, fluid, sometimes metallic visual language. Birds bring feathers, plumage and flight — lightness, layering and unusual color combinations that go well beyond anything printed on fabric. The goal in every case is the same: make the garment feel like it belongs to the animal, not like the animal's pattern was pasted onto it.</p>
 
         <div class="expand-h">The collaboration</div>
-        <p class="expand-p">Being explored as a collaboration with a fashion influencer based in Barcelona — its own conversation, running in parallel to this one.</p>
+        <p class="expand-p">This vertical is being developed as a collaboration with a fashion influencer based in Barcelona — someone who brings real fashion, modeling and audience experience to the creative direction. It's its own conversation, running in parallel to this one, and nothing about it is finalized yet, but it's a real, active exploration, not a placeholder.</p>
 
         <div class="expand-h">Status</div>
-        <p class="expand-p">Creative universe defined. Not live yet.</p>
+        <p class="expand-p">The creative universe and animal system are fully defined, but Fashion isn't live yet — it's a prototype, shown here so you see the complete picture of what Zebraish is building, not just the technology half.</p>
       </div>
     </details>
   </div>
@@ -643,7 +637,7 @@ details[open] .vert-summary { border-bottom: 1px solid var(--glass-border); }
 <section class="section reveal">
   <div class="s-label">03 — The ask</div>
   <h2 class="s-title">I want you in, <span class="accent">Ana.</span></h2>
-  <p class="s-body tight">This isn't a "keep in touch" deck. Zebraish needs someone who has actually built something real — not another advisor, not a name on a slide. That's why you're the first person seeing this. Studio is real and working today. The Board is designed and ready to build. I'm inviting you in now, while it's still early enough that joining means shaping it, not just watching it.</p>
+  <p class="s-body tight">This isn't a "keep in touch" deck. Zebraish's tech side — Studio and The Board — needs someone who already thinks like a builder and runs like an operator. You're a tech enthusiast and a CEO in your own right, which means you already have exactly the expertise this needs, not another advisor, not a name on a slide. That's why you're the first person seeing this. Studio is real and working today. The Board is designed and ready to build. I'm inviting you in now, while it's still early enough that joining means shaping it, not just watching it.</p>
 
   <div class="ask-grid">
     <div class="ask-card">
