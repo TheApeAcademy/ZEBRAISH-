@@ -118,27 +118,6 @@ body {
   .blob { animation: none !important; }
 }
 
-*, a { cursor: none !important; }
-.cursor {
-  width: 8px; height: 8px;
-  background: var(--blue);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.1s;
-  mix-blend-mode: difference;
-}
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(29,155,240,0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 99998;
-  transition: all 0.15s ease;
-}
-
 /* ── COVER ── */
 .cover {
   min-height: 100vh;
@@ -1025,9 +1004,6 @@ body {
   <div class="blob blob-c"></div>
 </div>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
-
 <!-- ══ COVER ══════════════════════════════════════════════════════ -->
 <section class="cover">
   <div class="cover-grid-bg"></div>
@@ -1500,23 +1476,6 @@ body {
 </section>
 
 <script>
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx - 4 + 'px';
-  cursor.style.top = my - 4 + 'px';
-});
-function animateRing() {
-  rx += (mx - rx - 16) * 0.12;
-  ry += (my - ry - 16) * 0.12;
-  ring.style.left = rx + 'px';
-  ring.style.top = ry + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.08 });
